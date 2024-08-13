@@ -17,7 +17,8 @@ jobs:
       with:
         repository: haitrvn/server
         token: ${{ secrets.GITHUB_TOKEN }}
-        path: "path/you/want/to/clone/to"
+        path: "server"
+        ref: master
     - name: Build Project B
       run: |
         cd server
