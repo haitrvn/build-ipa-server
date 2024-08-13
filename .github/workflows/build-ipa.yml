@@ -13,10 +13,11 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Clone IPA-server
-      run: |
-        # git clone https://$USER_NAME:$SECRET_TOKEN@github.com/$USER_NAME/$REPOSITORY_NAME.git
-        git clone https://haitrvn:${{ secrets.token }}@github.com/haitrvn/server.git
-
+      uses: actions/checkout@v4
+      with:
+        repository: haitrvn/server
+        token: ${{ secrets.GITHUB_TOKEN }}
+        path: "path/you/want/to/clone/to"
     - name: Build Project B
       run: |
         cd server
