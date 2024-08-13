@@ -1,0 +1,26 @@
+name: Build IPA-server
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout build repository
+      uses: actions/checkout@v3
+
+    - name: Clone IPA-server
+      run: |
+        git clone https://$USER_NAME:$SECRET_TOKEN@github.com/$USER_NAME/$REPOSITORY_NAME.git
+      env:
+        USER_NAME: ${{ secrets.USER_NAME }}
+        REPOSITORY_NAME: ${{ secrets.REPOSITORY_NAME }}
+        SECRET_TOKEN: ${{ secrets.token }}
+
+    - name: Build Project B
+      run: |
+        cd server
+        ./gradlew test
